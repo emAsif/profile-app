@@ -1,0 +1,173 @@
+<!-- api error alert -->
+@if (apiError) {
+<div class="w-100">
+  <div class="alert alert-danger fade show" role="alert">
+    Something went wrong, probably API didn't respond to request, contact
+    administrator
+  </div>
+</div>
+}
+<!-- warning message alert after continious calls -->
+@if (profileCount >= 25 && profileCount < 30) {
+<div class="alert alert-warning fade show" role="alert">
+  <strong>Warning!</strong> Are you sure you want to load more profiles.
+</div>
+}
+
+<!-- warning message alert after continious calls -->
+@if (profileCount === 30) {
+<div class="alert alert-danger fade show" role="alert">
+  <strong>Notice!</strong> you have reached the limit. Click on Renew profile
+  button to start again.
+</div>
+}
+<!-- table start -->
+@if (profilesList) {
+<div class="table-container">
+  <div class="d-flex mt-4">
+    <button
+      class="btn btn-sm btn-primary ms-md-none ms-md-0 ms-2"
+      [disabled]="profileCount === 30"
+      (click)="getRandomProfiles(profileCount)"
+    >
+      Add {{ profileCount === 1 ? "" : profileCount }}
+      {{ profileCount === 1 ? "one profile" : "profiles" }}
+      @if (loadProfilesBtn) {
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+      }
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-primary ms-2"
+      [disabled]="loadRenewProfilesBtn"
+      (click)="getRandomProfiles()"
+    >
+      Renew profiles @if (loadRenewProfilesBtn) {
+      <div class="spinner-border spinner-border-sm" role="status"></div>
+      }
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-outline-danger ms-2"
+      [disabled]="profilesList.length === 0"
+      (click)="deleteAllUsers()"
+    >
+      Delete all
+    </button>
+  </div>
+  <table class="table table-hover table-striped mt-2">
+    <thead>
+      <tr>
+        <th scope="col" style="width: 5%">#</th>
+        <th scope="col" style="width: 50%">User</th>
+        <th scope="col" class="d-md-table-cell d-none" style="width: 25%">
+          Full Name
+        </th>
+        <th scope="col" class="d-md-table-cell d-none" style="width: 20%">
+          Actions
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of profilesList; track user.id; let index = $index) {
+      <tr>
+        <th scope="row">{{ index + 1 }}</th>
+        <td>
+          <div class="d-flex justify-content-between">
+            <div>
+              <img
+                [src]="user.picture?.medium"
+                [alt]="user.name?.title"
+                class="avatar-img"
+              />
+              {{ user.email }}
+            </div>
+            <div class="d-md-none d-flex px-1">
+              <img
+                [src]="
+                  !(openIndex === index)
+                    ? './assets/icons/arrow-down.svg'
+                    : './assets/icons/arrow-up-fill.svg'
+                "
+                alt="eye"
+                class="action-icon"
+                (click)="toggleRow(index)"
+              />
+            </div>
+          </div>
+        </td>
+        <td class="d-md-table-cell d-none">
+          {{ user.name?.first }} {{ user.name?.last }}
+        </td>
+        <td class="d-md-table-cell d-none">
+          <img
+            [src]="
+              !(openIndex === index)
+                ? './assets/icons/eye.svg'
+                : './assets/icons/eye-fill.svg'
+            "
+            alt="eye"
+            class="action-icon"
+            (click)="toggleRow(index)"
+          />
+          <img
+            src="./assets/icons/trash.svg"
+            alt="delete"
+            class="action-icon mx-3"
+            [ngbPopover]="popContent"
+            #p="ngbPopover"
+          />
+          <ng-template #popContent>
+            <p>are you sure you want to delete?</p>
+            <div class="d-flex justify-content-end">
+              <button
+                class="btn btn-sm btn-outline-danger mx-2"
+                (click)="p.close()"
+              >
+                no
+              </button>
+              <button
+                class="btn btn-sm btn-primary"
+                (click)="deleteUser(index)"
+              >
+                yes
+              </button>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+      <tr *ngIf="openIndex === index">
+        <td colspan="4">
+          <div class="transition-div">
+            <app-details
+              [userDetails]="user"
+              (collapseWindow)="toggleRow(index)"
+              (deleteProfile)="deleteUser(index)"
+            ></app-details>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <!-- page view if no data exists -->
+  @if (profilesList.length == 0 && !isLoading) {
+  <div
+    class="w-100 d-flex flex-column align-items-center justify-content-center"
+  >
+    <img
+      src="./assets/icons/dog-data.jpg"
+      width="350px"
+      height="100%"
+      alt="not-data"
+    />
+
+    <b class="my-4">No Data</b>
+  </div>
+  }
+</div>
+} @else {
+<div class="d-flex justify-content-center align-items-center spinner">
+  <div class="spinner-grow text-primary" role="status"></div>
+</div>
+}

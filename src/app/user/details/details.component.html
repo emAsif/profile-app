@@ -1,0 +1,44 @@
+@if (userDetails) {
+<div class="row px-4 py-2 bg-light">
+  <div class="col-md-2 col-12 mt-md-0 mb-3">
+    <img [src]="userDetails.picture.large" [alt]="userDetails.name.first" />
+  </div>
+  <div class="col-md-10 col-12">
+    <div class="row gy-md-3 gy-2">
+      <div class="col-md-6 col-12 px-md-4 px-2">
+        <b>Full Name: </b>
+        {{ userDetails.name.first }} {{ userDetails.name.last }}
+      </div>
+      <div class="col-md-6 col-12 px-md-4 px-2">
+        <b>Email: </b>{{ userDetails.email }}
+      </div>
+      <div class="col-md-6 col-12 px-md-4 px-2">
+        <b>Phone#: </b>{{ userDetails.phone }}
+      </div>
+      <div class="col-md-6 col-12 px-md-4 px-2">
+        <b>DOB: </b>{{ userDetails.dob.date | date : "dd/MM/yyyy" }}
+      </div>
+      <div class="col-md-6 col-12 px-md-4 px-2">
+        <b>Location: </b>{{ userDetails.location.country }},
+        {{ userDetails.location.city }}
+      </div>
+      <div class="col-md-6 col-12 px-md-4 px-2">
+        <div><b>Gender: </b>{{ userDetails.gender }}</div>
+      </div>
+      <div class="col-md-8 col-12 px-md-4 px-2">
+        <button class="btn btn-sm btn-primary" (click)="collapseWindow.emit()">
+          close window
+        </button>
+        <button
+          class="btn btn-sm btn-outline-danger mx-2"
+          (click)="deleteProfile.emit()"
+        >
+          Delete Profile
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+} @else {
+<div class="d-flex justify-content-center bg-light"><b>Loading...</b></div>
+}

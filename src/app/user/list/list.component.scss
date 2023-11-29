@@ -1,0 +1,32 @@
+.table-container {
+  max-width: 1080px;
+  margin: 0 auto !important;
+  float: none !important;
+  height: 100%;
+  position: relative;
+}
+
+.action-icon {
+  cursor: pointer;
+}
+
+.avatar-img {
+  border-radius: 50%;
+  width: 20px;
+}
+
+.transition-div {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.6s ease-out, opacity 0.3s ease-out;
+}
+
+.expanded {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.spinner {
+  height: 100vh;
+}
