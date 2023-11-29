@@ -1,6 +1,6 @@
 # About The Project
 
-Profile-app uses the latest angular version and displays the list of profiles using an open source API. Project has following features:
+Profile-app displays the list of profiles using an open source [randomUser](https://randomuser.me/) API. Project has following features:
 
 - displaying list of profiles on landing page. Also profile remains **same** after refreshing page.
 - using 'Add profile' button new **random** profiles can be added increasing count with each click. To avoid infinite calls limit is set to 30 clicks and also displaying a warning message after 25 clicks.
@@ -10,7 +10,7 @@ Profile-app uses the latest angular version and displays the list of profiles us
 - 'Delete all' clears the list.
 - Responsive design for mobile and desktop.
 
-Following technical featuers are also covered:
+Following technical features are also covered:
 
 - unit test for component and service
 - rxjs
@@ -18,13 +18,13 @@ Following technical featuers are also covered:
 
 ### Note
 
-I assumed some of the requirements to make project more user friendly. I implemented all the required features however, because of large list of records I wanted to implement pagination or virtual scroll but due to time constraint couldn't complete that.
+I assumed some of the requirements to make project more user friendly. I implemented all the required features however, because of large number of records I wanted to implement pagination or virtual scroll but due to time constraint couldn't complete that feature.
 
 ### Built With
 
 - Angular
 - Bootstrap
-- ng bootstrap
+- ng-bootstrap
 
 <!-- GETTING STARTED -->
 
@@ -54,7 +54,7 @@ To run project successfully make sure to install latest node version **20.x.x** 
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Running unit tests
 
@@ -66,4 +66,4 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Further help
 
-If there are any question, please reach out to me **asifamin184@gmail.com**
+If there are any question, write me an email **asifamin184@gmail.com**
