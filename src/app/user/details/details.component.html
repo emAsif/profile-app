@@ -1,7 +1,9 @@
 @if (userDetails) {
 <div class="row px-4 py-2 bg-light">
-  <div class="col-md-2 col-12 mt-md-0 mb-3">
-    <img [src]="userDetails.picture.large" [alt]="userDetails.name.first" />
+  <div class="col-md-2 col-12 mt-md-0 mb-3 d-flex justify-content-center">
+    <div>
+      <img [src]="userDetails.picture.large" [alt]="userDetails.name.first" />
+    </div>
   </div>
   <div class="col-md-10 col-12">
     <div class="row gy-md-3 gy-2">

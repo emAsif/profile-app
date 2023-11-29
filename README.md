@@ -37,19 +37,18 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 To run project successfully make sure to install latest node version **20.x.x** or version **^18.13**
 
 - npm
-  ```sh
+  ```
   npm install npm@latest -g
   ```
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
+1. Clone the repo
+   ```
    git clone https://github.com/github_username/repo_name.git
    ```
-3. Install NPM packages
-   ```sh
+2. Install NPM packages
+   ```
    npm install
    ```
 
